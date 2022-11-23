@@ -20,7 +20,7 @@ cat(int fd)
     exit(1);
   }
 }
-void 
+void
 cat_n(int fd)
 {
   int n;
@@ -28,7 +28,7 @@ cat_n(int fd)
   printf("1\t");
   while((n=read(fd,buf,sizeof(buf)))>0)
 { 
- for(int i=0;i<sizeof(buf);i++)
+ for(int i=0;i<n;i++)
 {
  if(buf[i] != '\n')
 {
@@ -75,9 +75,6 @@ else
     cat(fd);
     close(fd);
         }
-         cat(fd);
-
-
  exit(0);
 }
 return 0;
