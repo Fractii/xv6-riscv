@@ -89,3 +89,9 @@ sys_uptime(void)
   release(&tickslock);
   return xticks;
 }
+uint64
+sys_sort(void)
+{
+  printf("Hello world\n");
+  return 12;
+}
