@@ -1,9 +1,49 @@
-#include "types.h"
-#include "stat.h"
-#include "user.h"
-int 
-main(void) {
-    printf("return val of system call is %d\n", sort());
-    printf("Congrats !! You have successfully added new system  call in xv6 OS :) \n");
+#include "kernel/types.h"
+#include "kernel/stat.h"
+#include "user/user.h"
+
+char buf[512];
+
+void
+errorhandling(int fd)
+{
+  int n;
+
+  while((n = read(fd, buf, sizeof(buf))) > 0) {
+    if (write(1, buf, n) != n) {
+      fprintf(2, "cat: write error\n");
+      exit(1);
+    }
+  }
+  if(n < 0){
+    fprintf(2, "cat: read error\n");
+    exit(1);
+  }
+
+}
+
+int
+main(int argc, char *argv[])
+{
+  int fd, i;
+
+  if(argc <= 1)
+  {
+    errorhandling(0);
     exit(0);
- }
+  }
+
+  for(i = 1; i < argc; i++)
+   {
+    if((fd = open(argv[i], 0)) < 0)
+    {
+       fprintf(2, "sort: cannot open %s\n", argv[i]);
+       exit(1);
+    }
+    else
+    {
+      printf("file opened yess");
+    } errorhandling(fd);
+      exit(0);
+   } return 0;
+}
