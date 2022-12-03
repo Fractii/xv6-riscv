@@ -134,8 +134,9 @@ UPROGS=\
 	$U/_zombie\
 	$U/_sort\
 
-fs.img: mkfs/mkfs README $(UPROGS)
-	mkfs/mkfs fs.img README $(UPROGS)
+fs.img: mkfs/mkfs README LICENSE $(UPROGS)
+	mkfs/mkfs fs.img README LICENSE $(UPROGS)
+
 
 -include kernel/*.d user/*.d
 
